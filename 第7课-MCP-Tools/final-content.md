@@ -883,7 +883,7 @@ import Stagehand from '@browserbasehq/stagehand';
 
 const stagehand = new Stagehand({
   env: 'LOCAL',  // 或 'BROWSERBASE'
-  modelName: 'claude-sonnet-4-20250514',
+  modelName: 'claude-sonnet-4-6',
 });
 
 await stagehand.init();
@@ -1020,7 +1020,7 @@ AI会根据你的需求自动选择最合适的工具。比如你说"帮我做�
 ---
 
 
-## Section 4：其他前端相关 MCP 工具（20分钟）
+## Section 4：其他前端相关 MCP 工具（15分钟）
 
 好，欢迎回来。前面我们花了大量时间讲浏览器自动化相关的MCP，但MCP的生态远不止于此。接下来我要给大家介绍三个对前端开发者特别有用的MCP工具。
 
@@ -1274,7 +1274,7 @@ AI会查询Next.js的最新文档，给你基于最新API的代码示例，而�
 ---
 
 
-## Section 5：实战演示（20分钟）
+## Section 5：实战演示（15分钟）
 
 好，终于到了实战环节！接下来我会现场演示三个场景，让大家直观感受MCP的威力。
 
@@ -1829,14 +1829,18 @@ await server.connect(transport);
 | **Puppeteer MCP** | Chrome DevTools 协议驱动 | 底层控制更精细 |
 | **Stagehand** | AI 语义定位元素 | 不依赖 CSS 选择器 |
 
-### 🎯 行动建议
+---
+
+## 🎯 行动建议
 
 - [ ] 花 10 分钟配置 Playwright MCP，亲自体验一次
 - [ ] 用 AI 为一个现有页面自动生成 E2E 测试
 - [ ] 探索 GitHub MCP 或 Filesystem MCP 的功能
 - [ ] 思考你的项目中哪些测试场景可以用 MCP 自动化
 
-### 💬 Q&A
+---
+
+## 💬 Q&A
 
 好，现在进入Q&A环节。大家有什么问题都可以提出来。
 
@@ -1923,11 +1927,11 @@ MCP是给AI用的——AI通过MCP协议自动发现可用的工具，理解每�
 **课程时间分配：**
 | 部分 | 时长 |
 |------|------|
-| Opening: E2E 测试的痛点 | 10 min |
-| Section 1: MCP 简介 | 20 min |
-| Section 2: Playwright MCP 深度解析 | 40 min |
-| Section 3: 其他浏览器自动化 MCP | 20 min |
-| Section 4: 其他实用 MCP 工具 | 15 min |
-| Section 5: 实战演示 | 30 min |
-| Closing + Q&A | 15 min |
+| Opening Hook | 10 min |
+| Section 1：MCP 简介 | 20 min |
+| Section 2：Playwright MCP 深度解析 | 40 min |
+| Section 3：横向对比其他浏览器自动化 MCP | 30 min |
+| Section 4：其他前端相关 MCP 工具 | 15 min |
+| Section 5：实战演示 | 15 min |
+| Closing + Q&A | 20 min |
 | **总计** | **2.5 小时** |

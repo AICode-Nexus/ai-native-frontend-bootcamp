@@ -1,12 +1,29 @@
-# Design to Code（下）：AI 代码生成工具实战
-## 最终版演讲稿（融合版）
+# 第5课：Design to Code（下）- AI 代码生成工具实战
 
-**演讲时长**: 2.5 小时
-**风格**: 故事开场 + 技术深度 + 实践建议
+> **课程时长**: 2.5小时 | **难度**: 进阶 | **风格**: 故事驱动 + 技术深度 + 实战演示
 
 ---
 
-## Opening Hook（10 min）
+## 📋 本课概览
+
+```
+┌─────────────────────────────────────────────────────────────────┐
+│  🎯 核心观点：AI 代码生成工具正在让"从截图/草图到可运行代码"      │
+│    的时间从天压缩到小时，让开发者聚焦业务逻辑。                    │
+├─────────────────────────────────────────────────────────────────┤
+│  📚 你将学到：                                                   │
+│    • AI 代码生成工具的定位与能力边界                              │
+│    • v0.dev 深度解析：Prompt 技巧 + 生态组合                     │
+│    • Design Token、图标库对生成质量的影响                         │
+│    • TweakCN、21st.dev、magic-ui、aceternity-ui 生态组合         │
+│    • Bolt.new、Lovable、Builder.io 等工具横向对比                │
+│    • 实战：从截图到生产代码的完整工作流                           │
+└─────────────────────────────────────────────────────────────────┘
+```
+
+---
+
+## 🎬 Opening Hook（10分钟）
 
 大家好，欢迎来到第 5 课。
 
@@ -57,7 +74,7 @@ graph TB
 
 ---
 
-## Section 1：AI 代码生成工具的定位（15 min）
+## Section 1：AI 代码生成工具的定位（15分钟）
 
 ### 不是替代，是加速
 
@@ -118,7 +135,7 @@ AI 时代前端开发者的工作：
 
 ---
 
-## Section 2：v0.dev 深度解析（40 min）
+## Section 2：v0.dev 深度解析（40分钟）
 
 ### 核心能力
 
@@ -1383,7 +1400,7 @@ export function SettingsPage() {
 
 ---
 
-## Section 3：横向对比其他 AI 生成工具（35 min）
+## Section 3：横向对比其他 AI 生成工具（35分钟）
 
 ### Bolt.new
 
@@ -1513,7 +1530,7 @@ graph TB
 
 ---
 
-## Section 4：实战演示（40 min）
+## Section 4：实战演示（30分钟）
 
 ### 实战 1：v0.dev 从 prompt 到生产级组件
 
@@ -1997,7 +2014,7 @@ graph TB
 
 ---
 
-## Closing（20 min）
+## 🎯 Closing（20分钟）
 
 ### 今天的核心要点
 
@@ -2014,31 +2031,94 @@ graph TB
 3. **不同工具有不同的适用场景**：选对工具很重要
 4. **Prompt 质量决定生成质量**：学会写好 Prompt
 
+### 关键收获
+
+如果今天的课程你只记住三件事，我希望是这三件：
+
+1. **AI 生成工具是加速器，不是替代品**：开发者的角色从"写代码"变成"审代码 + 定义约束"
+2. **v0.dev + shadcn/ui + Design Token 是黄金三角**：约束越清晰，生成质量越高
+3. **多工具组合优于单工具依赖**：v0.dev、Bolt.new、Lovable、21st.dev 各有侧重
+
 ### 行动建议
 
 1. 注册 v0.dev，试试从 prompt 生成一个页面
 2. 用 Bolt.new 搭建一个全栈原型
 3. 把竞品截图丢给 Screenshot to Code，看看效果
 
-### 下节课预告
+---
 
-下节课我们讲 **Monorepo 与代码组织**：
+## 📚 下节课预告
+
+> **第 6 课：Monorepo 与代码组织**
+
 - 为什么 Monorepo 更 AI 友好
-- Turborepo + pnpm workspace
-- AGENTS.md 和 .cursorrules
-
-### Q&A
-
-现在我们有 20 分钟的 Q&A 时间。
+- Turborepo + pnpm workspace 的工程化实践
+- AGENTS.md 与 .cursorrules 的 AI 记忆管理
+- 从单仓到 Monorepo 的迁移策略
 
 ---
 
-**演讲稿完成！**
+## 📋 知识点速查表
 
-**总时长**: 约 2.5 小时
-- Opening: 10 min
-- Section 1: 15 min
-- Section 2: 40 min
-- Section 3: 35 min
-- Section 4: 40 min
-- Closing: 20 min
+| 概念 | 定义 | 关键点 |
+|------|------|--------|
+| v0.dev | Vercel 的 AI UI 生成器 | 输出 React + Tailwind + shadcn/ui |
+| Bolt.new | StackBlitz 的 AI 全栈生成器 | 从 Prompt 到可运行的完整应用 |
+| Lovable | AI 驱动的应用构建器 | 支持 Supabase 后端一键集成 |
+| Screenshot to Code | 截图转代码的开源工具 | 适合从竞品快速还原 |
+| Builder.io Visual Copilot | 设计稿转代码 | 企业级、支持多框架 |
+| Design Token in Prompt | 将设计变量写入 Prompt | 提升生成代码与设计系统的一致性 |
+| TweakCN | shadcn/ui 主题可视化编辑器 | 快速定制主题并导出 Token |
+| 21st.dev | 高质量组件灵感库 | 先找模式，再让 AI 生成 |
+| magic-ui / aceternity-ui | 动效与营销感组件库 | 补充生成结果的视觉冲击 |
+| Prompt 分步生成 | 先生成小组件，再组合 | 提升复杂页面的生成质量 |
+
+---
+
+## 🎯 行动建议
+
+- [ ] 注册 v0.dev，从 Prompt 生成一个页面并集成到本地项目
+- [ ] 用 Bolt.new 搭建一个带 Supabase 的全栈原型
+- [ ] 把竞品截图丢给 Screenshot to Code，评估还原度
+- [ ] 用 TweakCN 为现有项目定制 shadcn/ui 主题
+- [ ] 建立团队的 Prompt 模板库（登录页、后台、设置页）
+- [ ] 整理从截图到生产的 5 步工作流文档
+
+---
+
+## 💬 Q&A
+
+现在我们有 Q&A 时间。
+
+**Q1：v0.dev 生成的代码可以直接用于生产吗？**
+
+A：UI 部分可以，但需要 Review。业务逻辑、API 集成、可访问性仍需要人工把关。建议作为"高质量起点"，而不是最终产物。
+
+**Q2：为什么我的 v0.dev 生成结果总是不理想？**
+
+A：大概率是 Prompt 不够具体。建议：1) 在 Prompt 中附上 Design Token；2) 先生成小组件，再组合；3) 明确指定使用 shadcn/ui 组件名。
+
+**Q3：v0.dev、Bolt.new、Lovable 怎么选？**
+
+A：v0.dev 适合组件/页面生成；Bolt.new 适合快速全栈原型；Lovable 适合带 Supabase 后端的完整应用。三者可以组合使用。
+
+**Q4：AI 生成会让前端开发者失业吗？**
+
+A：不会。AI 改变的是工作内容，而不是取代前端开发者。业务逻辑、性能优化、架构设计、用户体验打磨——这些核心价值仍然由开发者创造。
+
+---
+
+**课程时间分配：**
+| 部分 | 时长 |
+|------|------|
+| Opening Hook | 10 min |
+| Section 1：AI 代码生成工具的定位 | 15 min |
+| Section 2：v0.dev 深度解析 | 40 min |
+| Section 3：横向对比其他 AI 生成工具 | 35 min |
+| Section 4：实战演示 | 30 min |
+| Closing + Q&A | 20 min |
+| **总计** | **2.5 小时** |
+
+---
+
+*（全文完，总时长约2.5小时）*

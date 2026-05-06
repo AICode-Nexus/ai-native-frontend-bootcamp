@@ -50,7 +50,7 @@
 
 ---
 
-## Section 1：AI 编程工具的定位（15 min）
+## Section 1：AI 编程工具的定位（10 min）
 
 ### 不只是代码补全
 
@@ -98,7 +98,7 @@ graph TB
 
 ---
 
-## Section 2：Cursor 深度解析（40 min）
+## Section 2：Cursor 深度解析（35 min）
 
 ### 为什么选 Cursor
 
@@ -741,7 +741,7 @@ Cmd+K 的核心价值就是"选中、描述、替换"，三步搞定。特别适
 
 ---
 
-## Section 3：常用开发 Skills 详解（25 min）
+## Section 3：常用开发 Skills 详解（20 min）
 
 ### 什么是 Skills
 
@@ -1098,7 +1098,7 @@ graph LR
 
 ---
 
-## Section 4：AI Memory 管理（40 min）
+## Section 4：AI Memory 管理（30 min）
 
 ### 为什么需要 Memory
 
@@ -1128,6 +1128,8 @@ graph TB
 ### 项目级 Memory：AGENTS.md
 
 这是最重要的 Memory。放在项目根目录，所有 AI 工具都会读取。
+
+> 💡 **与第 6 课的关系**：第 6 课从"项目架构"视角讲过 AGENTS.md 的**结构规范**（项目级/应用级/包级/功能级的分层）；本课补充的是**AI Memory 管理**视角——如何把技术决策、已知问题、团队约定这些**动态知识**沉淀到 AGENTS.md 里，让 AI 越用越懂你。
 
 ```markdown
 # 项目 AI 开发指南
@@ -1449,7 +1451,7 @@ Cursor 生成的代码自动遵循项目规范：
 
 ---
 
-## Section 5：Prompt Engineering（20 min）
+## Section 5：Prompt Engineering（15 min）
 
 ### 高质量 Prompt 的结构
 
@@ -1764,7 +1766,7 @@ const { data } = useQuery({
 
 ---
 
-## Section 6：横向对比（15 min）
+## Section 6：横向对比（10 min）
 
 | 工具 | 核心特色 | AI 模型 | 多文件编辑 | 价格 | 适用场景 |
 |------|---------|---------|-----------|------|---------|
@@ -1933,6 +1935,55 @@ graph TB
 
 ---
 
+## 🎯 Closing（20 min）
+
+### 总结
+
+今天我们深入讲了 AI 编程工具的核心能力与 Memory 管理的最佳实践。记住这几个核心要点：
+
+1. **AI 编程工具不只是代码补全**：Composer 多文件编辑是杀手级功能
+2. **.cursorrules 是必须配置的**：30 行配置，代码质量提升一个档次
+3. **Memory 管理让 AI 越用越懂你**：项目级、会话级、个人级三层管理
+4. **Prompt 质量决定输出质量**：学会写结构化的 Prompt
+
+### 关键收获
+
+如果今天的课程你只记住三件事，我希望是这三件：
+
+1. **.cursorrules + AGENTS.md 是团队的集体 Memory**：把约定沉淀下来，让每个新成员都能立刻跑起来。
+2. **Skills 让 AI 从"通才"变"专家"**：先把 Top 10 Skills 用熟，再扩展新能力。
+3. **Prompt 要具体、有约束、有上下文引用**：三要素缺一不可。
+
+### 课后实践建议
+
+**练习 1（入门级）：配置你的第一份 .cursorrules**
+- 在当前项目创建 .cursorrules 文件
+- 写清楚技术栈、编码规范、禁止事项
+- 对比配置前后 AI 生成代码的质量差异
+
+**练习 2（进阶级）：编写企业级 AGENTS.md**
+- 按照"项目概述 + 技术决策 + 已知问题 + 团队约定"四段式撰写
+- 加入 3-5 条 ADR（技术决策记录）
+- 邀请团队成员 review
+
+**练习 3（高级）：用 Composer Agent 完成多文件任务**
+- 挑一个包含 5+ 文件变更的功能
+- 用结构化 Prompt 让 Composer 一次生成
+- 对比 AI 生成结果和手写的差异
+
+---
+
+## 📚 下节课预告
+
+> **第 9 课：前端 AI 功能集成 - Vercel AI SDK**
+
+- 在前端应用中集成 AI 能力
+- useChat Hook 和流式响应
+- AI Agents 和工具调用
+- Supabase + Vercel AI SDK 构建 RAG 应用
+
+---
+
 ## 📋 知识点速查表
 
 | 概念 | 定义 | 关键点 |
@@ -1948,16 +1999,7 @@ graph TB
 
 ---
 
-## 🎯 Closing（20 min）
-
-### 今天的核心要点
-
-1. **AI 编程工具不只是代码补全**：Composer 多文件编辑是杀手级功能
-2. **.cursorrules 是必须配置的**：30 行配置，代码质量提升一个档次
-3. **Memory 管理让 AI 越用越懂你**：项目级、会话级、个人级三层管理
-4. **Prompt 质量决定输出质量**：学会写结构化的 Prompt
-
-### 🎯 行动建议
+## 🎯 行动建议
 
 - [ ] 在项目中创建 .cursorrules 和 AGENTS.md
 - [ ] 配置个人级 Memory（~/.claude/memory/）
@@ -1967,34 +2009,37 @@ graph TB
 
 ---
 
-## 📚 下节课预告
+## 💬 Q&A
 
-> **第 9 课：前端 AI 功能集成 - Vercel AI SDK**
+现在进入 Q&A 环节。大家有什么问题都可以提出来。
 
-- 在前端应用中集成 AI 能力
-- useChat Hook 和流式响应
-- AI Agents 和工具调用
-- Supabase + Vercel AI SDK 构建 RAG 应用
+**Q1：团队里每个人的 Cursor 版本不一致，.cursorrules 还能生效吗？**
+
+A：.cursorrules 本身和版本无关，放在项目根目录即可。但不同版本的 Cursor 对规则的"遵守程度"确实有差异。建议团队统一到最新的稳定版本，并把版本号写到 README 的"开发环境"章节里。
+
+**Q2：AGENTS.md 和 .cursorrules 有什么区别？两个都要写吗？**
+
+A：AGENTS.md 是通用 AI 指令文件，Claude Code、Codex、Continue 等工具都会读取；.cursorrules 是 Cursor 专属的。两个都写是最稳妥的做法，但大部分内容可以共享，只是各自留一份供不同工具加载。也可以让 .cursorrules 里写一行 "Read and follow AGENTS.md" 做指向。
+
+**Q3：Memory 文件会不会让 AI 过度依赖旧决策，错过新的最佳实践？**
+
+A：会，所以 Memory 必须定期维护。课上讲的"月度检查清单"就是为此设计的。重点是及时标记 [DEPRECATED]、[FIXED]、[SUPERSEDED BY ADR-XXX] 这些状态，而不是直接删除历史记录。
+
+**Q4：Prompt 写得太长 AI 会不会反而"读不懂"？**
+
+A：会。Prompt 不是越长越好，而是越"结构化"越好。用清晰的小标题（角色 / 上下文 / 任务 / 约束 / 输出格式）分段，AI 反而更容易抓到重点。单次 Prompt 建议控制在 500-800 字，超过就拆成多轮对话。
 
 ---
-
-### 💬 Q&A
-
-现在我们有 20 分钟的 Q&A 时间。
-
----
-
-**演讲稿完成！**
 
 **课程时间分配：**
 | 部分 | 时长 |
 |------|------|
 | Opening: AI 编程工具的认知转变 | 10 min |
-| Section 1: AI 编程工具的定位 | 15 min |
-| Section 2: Cursor 深度解析 | 40 min |
-| Section 3: 常用开发 Skills 详解 | 25 min |
-| Section 4: Memory 管理 | 35 min |
-| Section 5: 横向对比 | 20 min |
-| Section 6: Prompt 工程 | 15 min |
-| Closing + Q&A | 15 min |
+| Section 1: AI 编程工具的定位 | 10 min |
+| Section 2: Cursor 深度解析 | 35 min |
+| Section 3: 常用开发 Skills 详解 | 20 min |
+| Section 4: Memory 管理 | 30 min |
+| Section 5: Prompt Engineering | 15 min |
+| Section 6: 横向对比 | 10 min |
+| Closing + Q&A | 20 min |
 | **总计** | **2.5 小时** |

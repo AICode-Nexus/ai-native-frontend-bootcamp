@@ -21,7 +21,9 @@
 
 ---
 
-## 🎬 Opening：现场实验对比
+## 🎬 Opening Hook（10分钟）
+
+### 现场实验对比
 
 ### 实验设计
 
@@ -202,7 +204,7 @@ graph LR
 
 ---
 
-## 📖 Section 1：传统 CSS 方案的 AI 盲区
+## 📖 Section 1：传统 CSS 方案的 AI 盲区（20分钟）
 
 ### 1.1 CSS 方案演进时间线
 
@@ -342,7 +344,7 @@ graph TB
 
 ---
 
-## 📖 Section 2：Utility-first 的底层逻辑
+## 📖 Section 2：Utility-first 的底层逻辑（25分钟）
 
 ### 2.1 什么是 Utility-first
 
@@ -856,7 +858,9 @@ flowchart TB
 
 ---
 
-## 📖 Closing：本课核心要点
+## 🎯 Closing（20分钟）
+
+### 总结
 
 ```mermaid
 graph TB
@@ -866,19 +870,47 @@ graph TB
         S3["3️⃣ Tailwind v4 是重大升级"]
         S4["4️⃣ 迁移要渐进式"]
     end
-    
+
     S1 --> D1["语义分散、跨文件依赖"]
     S2 --> D2["语义内联、Token高效"]
     S3 --> D3["CSS-first、Oxide引擎、10x性能"]
     S4 --> D4["新功能用Tailwind，老代码逐步迁移"]
 ```
 
-### ✅ 行动建议清单
+### 关键收获
 
-- [ ] 在下一个新组件中，试试 Tailwind
-- [ ] 安装 Tailwind v4，体验 CSS-first 配置
-- [ ] 用 AI 工具生成 Tailwind 代码，感受效率差异
-- [ ] 评估现有项目的迁移可行性
+如果今天的课程你只记住三件事，我希望是这三件：
+
+1. **AI 友好性是新的选型维度**：样式在 HTML 中内联，AI 无需跨文件推理，这是 Tailwind 比传统 CSS 方案更适合 AI 协作的根本原因
+2. **Tailwind v4 带来了性能革命**：CSS-first 配置让 AI 直接读懂主题，Oxide 引擎带来 10x 编译速度提升
+3. **渐进式迁移是务实选择**：老项目不必推倒重来，新功能先用 Tailwind，逐步演进即可
+
+### 课后实践建议
+
+**练习1（入门级）：体验 Tailwind v4**
+- 用 `npm create vite@latest` 创建一个新项目
+- 安装 Tailwind v4，体验 CSS-first 配置
+- 用 `@theme` 指令自定义一个主题
+
+**练习2（进阶级）：AI 辅助开发**
+- 用 Cursor 或 Claude 生成一个复杂布局（Dashboard 页面）
+- 对比你手写的速度与 AI 生成的速度
+- 记录 AI 生成代码的可用率
+
+**练习3（高级）：迁移方案设计**
+- 评估你现有项目的 CSS 方案
+- 制定一个从 CSS Modules / styled-components 迁移到 Tailwind 的计划
+- 至少迁移一个完整的组件模块
+
+---
+
+## 📚 下节课预告
+
+> **第 2 课：shadcn/ui - 组件库的新范式**
+
+- 为什么 Copy-paste 比 npm 更 AI 友好
+- CLI 工作流和 Registry 系统
+- shadcn/ui 生态（magic-ui、TweakCN 等）
 
 ---
 
@@ -895,13 +927,45 @@ graph TB
 
 ---
 
-## 📚 下节课预告
+## 🎯 行动建议
 
-> **第 2 课：shadcn/ui - 组件库的新范式**
+- [ ] 在下一个新组件中，试试 Tailwind
+- [ ] 安装 Tailwind v4，体验 CSS-first 配置
+- [ ] 用 AI 工具生成 Tailwind 代码，感受效率差异
+- [ ] 评估现有项目的迁移可行性
+- [ ] 配置 Prettier Plugin for Tailwind，自动排序类名
 
-- 为什么 Copy-paste 比 npm 更 AI 友好
-- CLI 工作流和 Registry 系统
-- shadcn/ui 生态（magic-ui、TweakCN 等）
+---
+
+## 💬 Q&A
+
+**Q1：Tailwind 类名太长，看起来很乱，怎么办？**
+
+A：三个实践可以缓解这个问题：
+- 使用 `cn()` 工具函数 + 分行组织长类名
+- 用 Prettier Plugin for Tailwind 自动排序
+- 对反复使用的组合，抽取为 shadcn/ui 组件（下节课讲）。不要过度使用 `@apply`，它会削弱 utility-first 的优势。
+
+**Q2：Tailwind v4 相比 v3，生产环境升级风险大吗？**
+
+A：v4 对现有项目是兼容的升级，但需要注意：
+- 配置从 `tailwind.config.js` 迁移到 CSS `@theme`
+- 部分第三方插件可能还未适配
+- 建议先在分支上跑完整回归测试，再合并到主线
+
+**Q3：我们团队一直用 CSS Modules，有必要迁移到 Tailwind 吗？**
+
+A：不急于一刀切。可以这样判断：
+- 如果要引入 AI 辅助开发：建议新模块先用 Tailwind
+- 如果团队对现状满意、没有 AI 需求：保持 CSS Modules 也没问题
+- 最差的选择是混用两套方案又没有规范，团队内部反而增加心智负担
+
+**Q4：Tailwind 会不会影响首屏性能？**
+
+A：Tailwind v4 的 Oxide 引擎会自动 Tree-shake 未使用的类名，最终打包产物通常比手写 CSS 还小。性能问题往往不在 CSS 本身，而在：
+- 字体加载策略
+- JS 包大小
+- 图片优化。先用 Lighthouse 定位真实瓶颈再说。
 
 ---
 
@@ -912,7 +976,7 @@ graph TB
 | Section 1: 传统 CSS 方案的 AI 盲区 | 20 min |
 | Section 2: Utility-first 的底层逻辑 | 25 min |
 | Section 3: Tailwind v4 核心变化 | 30 min |
-| Section 4: 实战迁移策略 | 30 min |
+| Section 4: 实战迁移策略 | 25 min |
 | Section 5: AI 辅助开发实战 | 20 min |
-| Closing + Q&A | 15 min |
-| **总计** | **2.5 小时** |
+| Closing | 20 min |
+| **总计** | **2.5 小时（150 min）** |

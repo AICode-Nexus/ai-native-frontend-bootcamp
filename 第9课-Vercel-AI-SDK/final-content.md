@@ -98,7 +98,7 @@ const results = await ai.search({
 
 ---
 
-## Section 2：Vercel AI SDK 深度解析（50 min）
+## Section 2：Vercel AI SDK 深度解析（45 min）
 
 ### 核心设计理念
 
@@ -131,7 +131,7 @@ const result1 = await generateText({
 
 // 切换到 Anthropic，只改一行
 const result2 = await generateText({
-  model: anthropic('claude-sonnet-4-20250514'),
+  model: anthropic('claude-sonnet-4-6'),
   prompt: '你好'
 })
 ```
@@ -616,7 +616,7 @@ import { google } from '@ai-sdk/google'
 const modelMap = {
   'gpt-4o': openai('gpt-4o'),
   'gpt-4o-mini': openai('gpt-4o-mini'),
-  'claude-sonnet-4': anthropic('claude-sonnet-4-20250514'),
+  'claude-sonnet-4': anthropic('claude-sonnet-4-6'),
   'gemini-2.0-flash': google('gemini-2.0-flash-exp'),
 }
 
@@ -636,7 +636,7 @@ export async function POST(req: Request) {
 
 ---
 
-## Section 3：横向对比（20 min）
+## Section 3：横向对比（15 min）
 
 | SDK | 易用性 | 框架支持 | 流式支持 | 多模型 | 工具调用 | 适用场景 |
 |-----|--------|----------|----------|--------|---------|---------|
@@ -777,7 +777,7 @@ const anthropic = new Anthropic({
 
 // 流式聊天
 const stream = await anthropic.messages.stream({
-  model: 'claude-sonnet-4-20250514',
+  model: 'claude-sonnet-4-6',
   max_tokens: 1024,
   messages: [{ role: 'user', content: '你好' }],
 })
@@ -801,7 +801,7 @@ Anthropic SDK 的特色是**支持 Claude 的独特功能**，比如：
 
 ---
 
-## Section 4：实战演示（40 min）
+## Section 4：实战演示（45 min）
 
 ### 实战 1：构建 AI 聊天界面
 
@@ -1347,6 +1347,8 @@ export function AISearchInterface() {
 
 ### 实战 4：Supabase + Vercel AI SDK 构建 RAG 应用
 
+> 💡 **与第 10 课的关系**：本节聚焦 Supabase 在 **RAG 场景中作为 Vector 存储**的具体用法（pgvector 配置、Embeddings 存取、相似度检索）。第 10 课会从"前端全栈化"视角介绍 Supabase 作为 BaaS 的完整能力（Auth / Realtime / Storage / MCP Server）。
+
 好，最后一个实战，我们来做一个很多人都想做、但不知道怎么下手的东西——**RAG 应用**。
 
 #### 什么是 RAG？
@@ -1505,37 +1507,41 @@ export async function POST(req: Request) {
 
 ---
 
-## 📋 知识点速查表
+## 🎯 Closing（20 min）
 
-| 概念 | 定义 | 关键点 |
-|------|------|--------|
-| **Vercel AI SDK** | 统一接口的 AI 开发工具包 | 多模型支持 + React Hook |
-| **useChat** | 核心聊天 Hook | 消息管理 + 流式响应 |
-| **streamText** | 流式文本生成 | 打字机效果 + 实时输出 |
-| **streamUI** | AI 返回 React 组件 | 超越纯文本的交互体验 |
-| **Tool Calling** | AI 调用外部工具 | 查询数据库、调用 API |
-| **generateObject** | 结构化输出 | Zod Schema 约束 |
-| **RAG** | 检索增强生成 | 基于私有数据的 AI 问答 |
-| **pgvector** | PostgreSQL 向量搜索扩展 | 语义搜索的基础 |
+### 总结
 
----
-
-## 🎯 Closing（25 min）
-
-### 今天的核心要点
+今天我们完整走了一遍 Vercel AI SDK 的核心能力：从最基础的 `useChat`、`streamText`，到结构化输出 `generateObject`，再到 Tool Calling 和 RAG。这条链路代表了前端 AI 功能的主流实现路径。
 
 1. **前端可以直接集成 AI 能力**：不需要 ML 背景
 2. **Vercel AI SDK 是 Next.js 项目的首选**：统一接口、流式响应、工具调用
 3. **useChat 是最核心的 API**：开箱即用的聊天功能
 4. **AI Agent 是未来**：AI 不只是聊天，还能执行操作
 
-### 🎯 行动建议
+### 关键收获
 
-- [ ] 在项目中安装 Vercel AI SDK，体验 useChat
-- [ ] 尝试定义一个 Tool，让 AI 调用你的 API
-- [ ] 构建一个简单的 AI 聊天界面（含 Markdown 渲染）
-- [ ] 用 Supabase + pgvector 做一个语义搜索 Demo
-- [ ] 思考你的产品中哪些场景可以用 AI 增强
+如果今天的课程你只记住三件事，我希望是这三件：
+
+1. **流式响应不是优化项，是标配**：用 `streamText` + `useChat` 就能拿到打字机体验。
+2. **Tool Calling 把 AI 从"聊天"变成"执行"**：查订单、改数据、调内部 API，都可以让 AI 自主决策调用。
+3. **RAG = Embedding + 向量数据库 + Prompt 组合**：Supabase pgvector 是个人/团队项目的最优起点。
+
+### 课后实践建议
+
+**练习 1（入门级）：搭一个最小聊天应用**
+- 创建 Next.js 15 项目，安装 `ai` 和 `@ai-sdk/openai`
+- 实现 `useChat` + API Route，10 分钟内完成一个可用的 Chat
+- 调整 `system` prompt 观察风格变化
+
+**练习 2（进阶级）：给 AI 加一个 Tool**
+- 定义一个"查询天气"或"查询订单状态"的 Tool
+- 用 Zod 描述参数
+- 观察 AI 在多轮对话中如何主动调用这个 Tool
+
+**练习 3（高级）：基于业务文档搭一个 RAG 问答**
+- 用 Supabase + pgvector 存储 10-20 篇业务文档的 Embedding
+- 实现检索 + 流式回答
+- 对比"有无 RAG"时 AI 回答质量的差异
 
 ---
 
@@ -1551,21 +1557,60 @@ export async function POST(req: Request) {
 
 ---
 
-### 💬 Q&A
+## 📋 知识点速查表
 
-现在我们有 25 分钟的 Q&A 时间。
+| 概念 | 定义 | 关键点 |
+|------|------|--------|
+| **Vercel AI SDK** | 统一接口的 AI 开发工具包 | 多模型支持 + React Hook |
+| **useChat** | 核心聊天 Hook | 消息管理 + 流式响应 |
+| **streamText** | 流式文本生成 | 打字机效果 + 实时输出 |
+| **streamUI** | AI 返回 React 组件 | 超越纯文本的交互体验 |
+| **Tool Calling** | AI 调用外部工具 | 查询数据库、调用 API |
+| **generateObject** | 结构化输出 | Zod Schema 约束 |
+| **RAG** | 检索增强生成 | 基于私有数据的 AI 问答 |
+| **pgvector** | PostgreSQL 向量搜索扩展 | 语义搜索的基础 |
 
 ---
 
-**演讲稿完成！**
+## 🎯 行动建议
+
+- [ ] 在项目中安装 Vercel AI SDK，体验 useChat
+- [ ] 尝试定义一个 Tool，让 AI 调用你的 API
+- [ ] 构建一个简单的 AI 聊天界面（含 Markdown 渲染）
+- [ ] 用 Supabase + pgvector 做一个语义搜索 Demo
+- [ ] 思考你的产品中哪些场景可以用 AI 增强
+
+---
+
+## 💬 Q&A
+
+现在进入 Q&A 环节。大家有什么问题都可以提出来。
+
+**Q1：Vercel AI SDK 一定要配合 Next.js 用吗？**
+
+A：不一定。Vercel AI SDK 的 Core（`streamText`、`generateObject`、Tool Calling 等）是框架无关的，Node.js、Hono、Express 都能用。但如果你要用 React Hooks（`useChat`、`useCompletion`）配合流式响应，Next.js 是最顺的选择——它的 Edge Runtime 和 App Router 对流式天生友好。
+
+**Q2：我们用的是自建大模型（私有化部署），Vercel AI SDK 能接吗？**
+
+A：可以。只要模型服务兼容 OpenAI API 规范（大部分私有化方案都支持），用 `createOpenAI({ baseURL: '你的网关地址' })` 就能接上。如果是完全自定义的协议，也可以写一个 Custom Provider 适配。
+
+**Q3：流式响应遇到网络抖动怎么处理？**
+
+A：两条路：一是在客户端用 `onError` 回调做重试，二是在服务端用 `experimental_telemetry` 或自己的日志做全程监控。更稳妥的做法是在中间加一层 BFF 缓冲，把流式输出先落到 Redis/内存，客户端断线重连后从断点继续读取。
+
+**Q4：RAG 的效果不好，主要调什么参数？**
+
+A：通常按这个顺序排查：1）Embedding 模型是否合适（中文场景优先用中文优化过的模型）；2）文档切分策略（chunk size 和 overlap 很关键）；3）`match_threshold` 阈值（太高会漏、太低会噪）；4）`match_count` 数量（一般 3-5 条最佳）；5）最后才是 Prompt 模板。
+
+---
 
 **课程时间分配：**
 | 部分 | 时长 |
 |------|------|
 | Opening: 前端 AI 功能的场景 | 10 min |
 | Section 1: 前端 AI 功能的常见场景 | 15 min |
-| Section 2: Vercel AI SDK 深度解析 | 50 min |
-| Section 3: 横向对比 | 20 min |
-| Section 4: 实战演示 | 40 min |
-| Closing + Q&A | 25 min |
+| Section 2: Vercel AI SDK 深度解析 | 45 min |
+| Section 3: 横向对比 | 15 min |
+| Section 4: 实战演示 | 45 min |
+| Closing + Q&A | 20 min |
 | **总计** | **2.5 小时** |

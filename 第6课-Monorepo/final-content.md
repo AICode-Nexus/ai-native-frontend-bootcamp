@@ -21,7 +21,7 @@
 
 ---
 
-## 🎬 Opening Hook（10 min）
+## 🎬 Opening Hook（10分钟）
 
 大家好，欢迎来到第 6 课。
 
@@ -59,7 +59,7 @@ graph LR
 
 ---
 
-## Section 1：传统项目结构的 AI 困境（20 min）
+## Section 1：传统项目结构的 AI 困境（20分钟）
 
 ### 1.1 按技术分层的问题
 
@@ -125,7 +125,7 @@ src/
 
 **这就是单仓巨石的问题：上下文过大，噪音太多。**
 
-AI 的上下文窗口是有限的。Claude 3.5 Sonnet 有 200K tokens 的上下文窗口，看起来很大，对吧？但一个中型项目的代码量轻松超过这个数字。
+AI 的上下文窗口是有限的。Claude Sonnet 4.6 有 200K tokens 的上下文窗口，Claude Opus 4.7 的 1M 长上下文版本更是扩展到了百万 token，看起来很大，对吧？但一个中型项目的代码量轻松超过标准上下文。
 
 当 AI 的上下文被无关代码占满时，它就无法深入理解你真正需要修改的部分。
 
@@ -181,7 +181,7 @@ graph TB
 
 ---
 
-## Section 2：Turborepo + pnpm workspace（40 min）
+## Section 2：Turborepo + pnpm workspace（40分钟）
 
 ### 2.1 为什么 Monorepo 更 AI 友好
 
@@ -549,7 +549,7 @@ Turborepo 会自动处理任务编排，pnpm 会自动处理依赖管理。
 
 ---
 
-## Section 3：AI 友好的文件结构约定（25 min）
+## Section 3：AI 友好的文件结构约定（25分钟）
 
 ### 3.1 命名约定
 
@@ -737,7 +737,7 @@ This is an e-commerce platform built with Next.js, React, and TypeScript.
 
 ---
 
-## Section 4：项目规范文件（30 min）
+## Section 4：项目规范文件（20分钟）
 
 ### 4.1 AGENTS.md（项目级 AI 指令）
 
@@ -974,7 +974,7 @@ my-project/
 
 ---
 
-## Section 5：横向对比（15 min）
+## Section 5：横向对比（15分钟）
 
 ### 5.1 Monorepo 工具对比
 
@@ -1093,11 +1093,9 @@ my-project/
 | **CLAUDE.md** | Claude Code 的指令文件 | 项目上下文 + 已知问题 |
 | **分层 AGENTS.md** | 在 Monorepo 不同层级放置指令文件 | 项目级→应用级→包级→功能级 |
 
----
+## 🎯 Closing（20分钟）
 
-## 🎯 Closing（20 min）
-
-### 6.1 实战演示
+### 实战演示
 
 好，理论讲完了。让我们来做一个实战演示。
 
@@ -1210,15 +1208,7 @@ When creating new features:
 
 **这就是 AI 友好的项目架构的威力。**
 
-### 🎯 行动建议
-
-- [ ] 评估现有项目是否适合迁移到 Monorepo
-- [ ] 用 `pnpm dlx create-turbo@latest` 创建一个示例项目
-- [ ] 为现有项目编写 AGENTS.md 和 .cursorrules
-- [ ] 尝试功能切片重构一个模块
-- [ ] 配置 Turborepo 的 Remote Caching
-
-### 6.2 总结
+### 总结
 
 好，让我们总结一下今天学到的内容。
 
@@ -1230,7 +1220,7 @@ graph TB
     B[功能切片] --> E
     C[命名约定] --> E
     D[项目规范文件] --> E
-    
+
     E --> F[AI 生成高质量代码]
     E --> G[开发效率提升]
 ```
@@ -1247,6 +1237,31 @@ graph TB
 
 AI 友好的项目架构，本质上就是对人类友好的项目架构。只不过，AI 对"清晰"和"一致"的要求更高。
 
+### 关键收获
+
+如果今天的课程你只记住三件事，我希望是这三件：
+
+1. **Monorepo 是 AI 协作的放大器**：单一仓库 + 功能切片让 AI 在一次推理中看到完整上下文，显著提升生成代码的准确性
+2. **规范文件是 AI 的"项目说明书"**：AGENTS.md / CLAUDE.md / .cursorrules 不是可选项，而是让 AI 越用越懂你的关键基础设施
+3. **分层约定比一刀切更灵活**：项目级、应用级、包级、功能级的分层 AGENTS.md 让不同模块保持自己的上下文边界
+
+### 课后实践建议
+
+**练习1（入门级）：Turborepo 初体验**
+- 用 `pnpm dlx create-turbo@latest` 创建一个示例项目
+- 阅读生成的 turbo.json 和 pnpm-workspace.yaml
+- 运行一次完整 build，观察 Turborepo 的缓存行为
+
+**练习2（进阶级）：功能切片重构**
+- 挑一个现有项目中的模块（如"订单"、"用户"）
+- 把散落在 components/services/hooks 中的相关代码，聚合到 `features/order/` 目录
+- 体会"按功能组织"相比"按技术分层"的差异
+
+**练习3（高级）：分层 AGENTS.md 实战**
+- 为你的 Monorepo 设计一套分层规范：项目级 → 应用级 → 包级
+- 写一个有针对性的功能级 AGENTS.md（如只说明某个 feature 的业务规则）
+- 用 Cursor 验证：在不同目录触发 AI，观察生成代码是否符合该层规范
+
 ---
 
 ## 📚 下节课预告
@@ -1260,7 +1275,19 @@ AI 友好的项目架构，本质上就是对人类友好的项目架构。只�
 
 ---
 
-### 💬 6.4 Q&A
+## 🎯 行动建议
+
+- [ ] 评估现有项目是否适合迁移到 Monorepo
+- [ ] 用 `pnpm dlx create-turbo@latest` 创建一个示例项目
+- [ ] 为现有项目编写 AGENTS.md 和 .cursorrules
+- [ ] 尝试功能切片重构一个模块
+- [ ] 配置 Turborepo 的 Remote Caching
+- [ ] 设置分层 AGENTS.md（项目级 / 应用级 / 包级）
+- [ ] 建立 CODEOWNERS 文件管理跨团队协作
+
+---
+
+## 💬 Q&A
 
 好，现在是 Q&A 时间。大家有什么问题？
 
@@ -1318,10 +1345,10 @@ A：需要。这些文件是项目的一部分，应该和代码一起版本管�
 |------|------|
 | Opening: 多仓库的 AI 困境 | 10 min |
 | Section 1: 传统项目结构的 AI 困境 | 20 min |
-| Section 2: Turborepo + pnpm workspace | 40 min |
-| Section 3: AI 友好的文件结构约定 | 25 min |
-| Section 4: 项目规范文件 | 30 min |
+| Section 2: Turborepo + pnpm workspace | 35 min |
+| Section 3: AI 友好的文件结构约定 | 20 min |
+| Section 4: 项目规范文件 | 20 min |
 | Section 5: 横向对比 | 15 min |
-| Closing + Q&A | 20 min |
-| **总计** | **2.5 小时** |
+| Closing | 20 min |
+| **总计** | **2.5 小时（150 min）** |
 

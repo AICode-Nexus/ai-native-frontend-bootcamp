@@ -2365,9 +2365,9 @@ const [open, setOpen] = useState(false)
 
 ---
 
-## 📋 Closing：总结与实践建议
+## 🎯 Closing（20分钟）
 
-### 核心要点速查
+### 总结
 
 ```mermaid
 graph TB
@@ -2379,63 +2379,30 @@ graph TB
     end
 ```
 
-### ✅ 实践建议清单
+### 关键收获
 
-#### 建议 1：从 shadcn/ui 开始
+如果今天的课程你只记住三件事，我希望是这三件：
 
-```bash
-npx shadcn-ui@latest init
-npx shadcn-ui@latest add button dialog select
-```
+1. **Headless 不是"没样式"，而是"样式与逻辑解耦"**：Radix 把复杂的可访问性、焦点管理、键盘导航都做好了，你只需要专注于视觉设计
+2. **Composition 是可维护性的关键**：`Dialog.Root / Trigger / Content` 这种结构看似"啰嗦"，实际让每一个原语职责单一，AI 和人都能轻松理解
+3. **shadcn/ui 的魔法来自 Radix**：shadcn/ui 只是 Radix + Tailwind + CVA 的"脚手架"，真正的工程价值在 Radix 的可访问性原语和 Composition 设计上
 
-> 看 shadcn/ui 如何封装 Radix，学习设计模式
+### 课后实践建议
 
-#### 建议 2：理解 Composition 模式
+**练习1（入门级）：拆解 shadcn/ui 的 Dialog**
+- 用 `npx shadcn@latest add dialog` 添加 Dialog
+- 打开源码，找出所有 Radix 原语
+- 理解每个原语的作用（Portal、Overlay、Content、Close）
 
-- 不要把它当"麻烦"，而是"灵活性"
-- 试着自己组合一个复杂的 Dialog
+**练习2（进阶级）：基于 Radix 自建组件**
+- 用 Radix Popover 原语，从零实现一个 Tooltip
+- 加入自定义动画（使用 `data-state` 属性）
+- 用 VoiceOver / NVDA 测试可访问性
 
-#### 建议 3：学习可访问性基础
-
-| 概念 | 说明 |
-|------|------|
-| **ARIA 属性** | role、aria-label、aria-describedby |
-| **焦点管理** | 打开聚焦、关闭恢复 |
-| **键盘导航** | Tab、ESC、Arrow Keys |
-| **屏幕阅读器** | VoiceOver、NVDA |
-
-#### 建议 4：建立团队组件库
-
-```
-my-ui/
-  components/
-    button.tsx
-    dialog.tsx
-    select.tsx
-  lib/
-    utils.ts
-  styles/
-    globals.css
-```
-
-#### 建议 5：拥抱 AI
-
-```
-Prompt: "用 Radix Dialog 和 Tailwind 写一个确认删除对话框，
-        要有警告图标、红色按钮、模糊背景"
-```
-
-> AI 生成的代码质量很高，因为 Radix 的结构清晰、可预测
-
-### 📋 知识点速查表
-
-| 概念 | 定义 | 关键点 |
-|------|------|--------|
-| **Headless UI** | 只提供逻辑，不提供样式 | 分离逻辑与样式 |
-| **Composition 模式** | 拆分成原语，自由组合 | Dialog.Root/Trigger/Content |
-| **asChild** | 合并 props 到子元素 | 避免额外 DOM 节点 |
-| **焦点陷阱** | Tab 在组件内循环 | Focus Trap |
-| **ARIA** | 可访问性富互联网应用 | role、aria-* 属性 |
+**练习3（高级）：复杂组件 Composition**
+- 实现一个 Multi-Select 组件（多选下拉）
+- 组合 Popover + Command + Checkbox 三个 Radix 原语
+- 测试键盘导航（Tab、Arrow、Enter、Escape）
 
 ---
 
@@ -2451,17 +2418,112 @@ Prompt: "用 Radix Dialog 和 Tailwind 写一个确认删除对话框，
 
 ---
 
+## 📋 知识点速查表
+
+| 概念 | 定义 | 关键点 |
+|------|------|--------|
+| **Headless UI** | 只提供逻辑，不提供样式 | 分离逻辑与样式 |
+| **Composition 模式** | 拆分成原语，自由组合 | Dialog.Root/Trigger/Content |
+| **asChild** | 合并 props 到子元素 | 避免额外 DOM 节点 |
+| **焦点陷阱** | Tab 在组件内循环 | Focus Trap |
+| **ARIA** | 可访问性富互联网应用 | role、aria-* 属性 |
+
+---
+
+## 🎯 行动建议
+
+### 建议 1：从 shadcn/ui 开始
+
+```bash
+npx shadcn@latest init
+npx shadcn@latest add button dialog select
+```
+
+> 看 shadcn/ui 如何封装 Radix，学习设计模式
+
+### 建议 2：理解 Composition 模式
+
+- 不要把它当"麻烦"，而是"灵活性"
+- 试着自己组合一个复杂的 Dialog
+
+### 建议 3：学习可访问性基础
+
+| 概念 | 说明 |
+|------|------|
+| **ARIA 属性** | role、aria-label、aria-describedby |
+| **焦点管理** | 打开聚焦、关闭恢复 |
+| **键盘导航** | Tab、ESC、Arrow Keys |
+| **屏幕阅读器** | VoiceOver、NVDA |
+
+### 建议 4：建立团队组件库
+
+```
+my-ui/
+  components/
+    button.tsx
+    dialog.tsx
+    select.tsx
+  lib/
+    utils.ts
+  styles/
+    globals.css
+```
+
+### 建议 5：拥抱 AI
+
+```
+Prompt: "用 Radix Dialog 和 Tailwind 写一个确认删除对话框，
+        要有警告图标、红色按钮、模糊背景"
+```
+
+> AI 生成的代码质量很高，因为 Radix 的结构清晰、可预测
+
+---
+
+## 💬 Q&A
+
+**Q1：Radix 看起来好复杂，每个组件都要写 Root、Trigger、Content 一大堆，有没有更简洁的方案？**
+
+A：复杂度是"被暴露"而不是"被增加"。对比一下：
+- Ant Design 的 `<Dialog>` 看起来简洁，但所有逻辑都在黑盒里，AI 无法理解
+- Radix 把原语暴露出来，你每多写一行就多获得一份控制力
+- shadcn/ui 会帮你把常用组合封装成"成品组件"，日常使用时仍然是一个 `<Dialog>`
+
+**Q2：Radix 和 Headless UI（Tailwind Labs 出品）怎么选？**
+
+A：取决于技术栈：
+- React + 高度定制需求：Radix（生态更成熟、原语更多）
+- Vue 3 项目：Headless UI（官方支持）
+- 多框架（Solid、Svelte）：Ark UI（Radix 的多框架版本）
+- 企业级 + 严苛可访问性要求：React Aria（Adobe 出品，业界标杆）
+
+**Q3：自己写可访问性很难，Radix 真的能做到吗？**
+
+A：Radix 的可访问性已经过了 Adobe 级别的专家审计，可以信任。但你需要做三件事：
+- 不要覆盖 Radix 自动注入的 ARIA 属性
+- 不要用 CSS `display: none` 隐藏元素（会破坏屏幕阅读器）
+- 在真实辅助技术（VoiceOver / NVDA）上测试一遍
+
+**Q4：Radix 的 asChild 模式是什么？什么时候用？**
+
+A：`asChild` 让 Radix 把 props 合并到你的子元素上，而不是额外包一层 DOM：
+- 默认：`<Dialog.Trigger><button>点我</button></Dialog.Trigger>` 会渲染成 `<button><button>点我</button></button>`
+- 加了 asChild：`<Dialog.Trigger asChild><button>点我</button></Dialog.Trigger>` 会渲染成 `<button onClick=...>点我</button>`
+- 使用场景：自定义触发元素、避免嵌套 button、与 `<Link>` 等组件集成
+
+---
+
 **课程时间分配：**
 | 部分 | 时长 |
 |------|------|
-| Opening: shadcn/ui 的秘密 | 10 min |
+| Opening: 一个有趣的发现 | 10 min |
 | Section 1: 什么是 Headless UI | 15 min |
 | Section 2: Composition 模式 | 20 min |
 | Section 3: 可访问性原语 | 20 min |
 | Section 4: 核心技术深度解析 | 25 min |
-| Section 5: shadcn/ui 构建分析 | 15 min |
-| Section 6: 常用组件实战 | 25 min |
-| Section 7: 横向对比 | 15 min |
+| Section 5: shadcn/ui 构建分析 | 10 min |
+| Section 6: 常用组件实战 | 20 min |
+| Section 7: 横向对比 | 10 min |
 | Section 8: 常见问题 FAQ | 10 min |
-| Closing + Q&A | 15 min |
-| **总计** | **约 2.5-3 小时** |
+| Closing | 20 min |
+| **总计** | **约 2.5-3 小时（150-180 min）** |

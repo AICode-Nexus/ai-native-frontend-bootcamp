@@ -1234,7 +1234,7 @@ export function ThreeDCardDemo() {
 
 ### 3.5 TweakCN：从“换主题”升级到“主题工作流”
 
-> 🔗 GitHub：https://github.com/tweakcn/tweakcn
+> 🔗 GitHub：https://github.com/jnsahaj/tweakcn
 
 很多同学第一次看到 `TweakCN`，会把它理解成“一个 shadcn/ui 配色生成器”。这也太低估它了。
 
@@ -2112,9 +2112,9 @@ graph TB
 
 ---
 
-## 📋 Closing：总结与行动建议
+## 🎯 Closing（20分钟）
 
-### 核心要点速查
+### 总结
 
 ```mermaid
 graph TB
@@ -2127,28 +2127,30 @@ graph TB
     end
 ```
 
-### ✅ 行动建议清单
+### 关键收获
 
-#### 新项目
-- [ ] 使用 Tailwind CSS v4 作为样式方案
-- [ ] 使用 shadcn/ui 作为组件库
-- [ ] 配合 v0.dev + Cursor 进行 AI 辅助开发
+如果今天的课程你只记住三件事，我希望是这三件：
 
-#### 老项目
-- [ ] 渐进式迁移：先用 shadcn/ui 做新功能
-- [ ] 混合使用：shadcn/ui + 老组件库并存
-- [ ] 评估成本：稳定项目不一定要迁移
+1. **Open Code 是范式转移**：shadcn/ui 不是"更好用的组件库"，而是改变了组件库的交付方式——从 npm 黑盒到项目源码，AI 能看、能改、能推理
+2. **CLI + Registry 是护城河**：CLI 把复制粘贴变成了工程化流程，Registry 让自定义组件库也能享受同样的 DX
+3. **生态决定上限**：shadcn/ui 的价值不只是 shadcn/ui 本身，而是围绕它形成的 magic-ui、TweakCN、v0.dev 生态网络
 
-### 📋 知识点速查表
+### 课后实践建议
 
-| 概念 | 定义 | 关键点 |
-|------|------|--------|
-| **Copy-Paste 哲学** | 组件源码复制到项目中 | 代码即资产，拥有即控制 |
-| **CLI 工作流** | npx shadcn@latest add | 从 Registry 拉取源码 |
-| **Registry** | 组件的中央仓库 | JSON API，存储元数据和源码 |
-| **CVA** | Class Variance Authority | 管理 Tailwind 变体 |
-| **cn()** | 类名合并工具 | clsx + tailwind-merge |
-| **asChild** | Radix Slot 模式 | 避免额外 DOM 节点 |
+**练习1（入门级）：搭建 shadcn/ui 项目**
+- 用 `npx shadcn@latest init` 初始化一个新项目
+- 添加 Button、Dialog、Form 三个组件
+- 阅读它们的源码，理解 CVA + cn() 模式
+
+**练习2（进阶级）：AI 辅助定制**
+- 用 v0.dev 生成一个完整页面（Settings 或 Dashboard）
+- 把生成的代码拷到本地项目，用 Cursor 调整样式
+- 对比 v0.dev 生成 vs 手写的质量与速度
+
+**练习3（高级）：自建 Registry**
+- 为你们团队的自定义组件建立一个内部 Registry
+- 让团队成员用 `npx shadcn@latest add` 从内部 Registry 拉取
+- 对比这种方式与传统组件库 npm 发布的差异
 
 ---
 
@@ -2163,15 +2165,79 @@ graph TB
 
 ---
 
+## 📋 知识点速查表
+
+| 概念 | 定义 | 关键点 |
+|------|------|--------|
+| **Copy-Paste 哲学** | 组件源码复制到项目中 | 代码即资产，拥有即控制 |
+| **CLI 工作流** | npx shadcn@latest add | 从 Registry 拉取源码 |
+| **Registry** | 组件的中央仓库 | JSON API，存储元数据和源码 |
+| **CVA** | Class Variance Authority | 管理 Tailwind 变体 |
+| **cn()** | 类名合并工具 | clsx + tailwind-merge |
+| **asChild** | Radix Slot 模式 | 避免额外 DOM 节点 |
+
+---
+
+## 🎯 行动建议
+
+### 新项目
+- [ ] 使用 Tailwind CSS v4 作为样式方案
+- [ ] 使用 shadcn/ui 作为组件库
+- [ ] 配合 v0.dev + Cursor 进行 AI 辅助开发
+- [ ] 用 TweakCN 建立团队的设计 Token 体系
+
+### 老项目
+- [ ] 渐进式迁移：先用 shadcn/ui 做新功能
+- [ ] 混合使用：shadcn/ui + 老组件库并存
+- [ ] 评估成本：稳定项目不一定要迁移
+- [ ] 搭建内部 Registry，沉淀团队组件资产
+
+---
+
+## 💬 Q&A
+
+**Q1：shadcn/ui 的组件源码都在项目里，升级怎么办？不就失去 npm 升级的好处了吗？**
+
+A：这是一个常见误解。shadcn/ui 的设计哲学就是"代码即资产"：
+- CLI 的 `diff` 命令可以查看官方版本与你本地版本的差异
+- 你可以选择性地合并新特性，而不是被动接受所有变更
+- 对于已经定制过的组件，你永远不必担心升级破坏自定义代码
+- 底层的 Radix UI 仍然是 npm 依赖，真正的 bug 修复会自动获得
+
+**Q2：团队里有设计师坚持用 Ant Design，怎么说服？**
+
+A：不要硬推。可以这样沟通：
+- 如果项目重度 AI 协作：shadcn/ui 的 AI 友好性会带来量化的效率提升
+- 如果项目已经用 Ant Design 且稳定运行：没必要迁移
+- 混合使用也是可行方案：新模块用 shadcn/ui，老模块保持 Ant Design
+- 展示 v0.dev 生成 shadcn/ui 代码的实际效果，让事实说话
+
+**Q3：shadcn/ui 和 Ant Design 可以混用吗？会有冲突吗？**
+
+A：技术上可以混用，但要注意：
+- 样式系统冲突：Ant Design 用 less，shadcn/ui 用 Tailwind，需要配置好构建链
+- 视觉一致性：两套组件库视觉风格不同，需要做主题对齐
+- 建议做"模块隔离"：某个页面或模块内只用一套，不要在同一组件里混用
+
+**Q4：自建 Registry 的维护成本高吗？**
+
+A：取决于组件规模：
+- 小型团队（<10 组件）：用静态 JSON 文件即可，几乎零维护成本
+- 中型团队（10-50 组件）：需要简单的构建脚本自动生成 Registry JSON
+- 大型团队（>50 组件）：考虑用 shadcn-ui 的官方 Registry 生成工具，接入 CI/CD 自动发布
+
+---
+
 **课程时间分配：**
 | 部分 | 时长 |
 |------|------|
 | Opening: 现场对比演示 | 10 min |
 | Section 1: 传统组件库的 AI 困境 | 20 min |
-| Section 2: Copy-Paste 哲学 | 30 min |
-| Section 3: 生态工具 | 25 min |
-| Section 4: 横向对比 | 20 min |
-| Section 5: 实战演示 | 20 min |
-| Section 6: 深度思考 | 15 min |
-| Closing + Q&A | 10 min |
-| **总计** | **2.5 小时** |
+| Section 2: Copy-Paste 哲学 | 25 min |
+| Section 3: 核心技术深度解析 | 25 min |
+| Section 4: 生态工具 | 20 min |
+| Section 5: 横向对比 | 15 min |
+| Section 6: 实战演示 | 15 min |
+| Section 7: 深度思考 | 10 min |
+| Closing | 20 min |
+| **总计** | **2.5 小时（150 min 的主要内容 + 10 min Buffer）** |

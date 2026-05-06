@@ -39,7 +39,7 @@
 
 ---
 
-## Section 1：AI 驱动的 CI/CD（20 min）
+## Section 1：AI 驱动的 CI/CD（15 min）
 
 ### 传统 CI/CD 的问题
 
@@ -88,7 +88,7 @@ Turborepo 的 `--filter` 就是这个思路：只构建和测试变更的包。
 - name: AI Code Review
   uses: coderabbitai/ai-pr-reviewer@latest
   with:
-    model: claude-sonnet-4-20250514
+    model: claude-sonnet-4-6
 ```
 
 AI 自动审查代码，发现潜在问题，提出改进建议。
@@ -177,7 +177,7 @@ jobs:
       - name: AI Code Review
         uses: coderabbitai/ai-pr-reviewer@latest
         with:
-          model: claude-sonnet-4-20250514
+          model: claude-sonnet-4-6
           review_comment_lgtm: false
           path_filters: |
             !dist/**
@@ -378,7 +378,7 @@ pnpm turbo run test --filter='...[origin/main...HEAD]' --cache-dir=.turbo
 
 ---
 
-## Section 2：项目配置与规范化（25 min）
+## Section 2：项目配置与规范化（20 min）
 
 在讲代码质量工具之前，我想先和大家聊聊一个经常被忽视的话题：**项目配置文件**。
 
@@ -765,7 +765,7 @@ AI 会根据你的项目类型（Next.js、React、Vue）生成对应的配置�
 
 ---
 
-## Section 3：代码质量工具（30 min）
+## Section 3：代码质量工具（25 min）
 
 ### Biome vs ESLint + Prettier
 
@@ -1270,7 +1270,7 @@ jobs:
         if: success()
         uses: coderabbitai/ai-pr-reviewer@latest
         with:
-          model: claude-sonnet-4-20250514
+          model: claude-sonnet-4-6
 ```
 
 这个流程的好处是：Biome 检查只需要不到 1 秒，如果格式或基本规则有问题，立刻失败，不需要等 AI 审查。AI 审查只在 Biome 通过后才运行，节省 API 调用成本。
@@ -1283,7 +1283,7 @@ jobs:
 
 ---
 
-## Section 4：前端全栈化趋势（40 min）
+## Section 4：前端全栈化趋势（35 min）
 
 ### 为什么全栈化是趋势
 
@@ -2128,6 +2128,8 @@ AI 特别擅长生成这种声明式的代码——因为它只需要理解数�
 
 好，讲完 Prisma，我们来看一个更"激进"的方案——**Supabase**。
 
+> 💡 **与第 9 课的关系**：第 9 课已经讲过 Supabase 在 **RAG 应用中作为 Vector 存储**（pgvector + Embeddings）的用法。本课从更宏观的"全栈化"视角，介绍 Supabase 作为 **AI 友好 BaaS** 的完整能力矩阵（数据库 + Auth + Realtime + Storage + Vector + MCP）。两个视角互补——第 9 课讲"怎么用 pgvector 做语义搜索"，本课讲"为什么 Supabase 是 AI 时代的后端首选"。
+
 Supabase 是什么？一句话：**开源的 Firebase 替代**。但它比 Firebase 强在一个关键点——它用的是 **PostgreSQL**，不是 NoSQL。目前 GitHub 上已经有 **99K+ Stars**，社区非常活跃。
 
 为什么我要在 Prisma 之后讲它？因为 Prisma 是一个 ORM——它帮你操作数据库，但你还是需要自己搭建 API、认证、实时通信这些东西。而 Supabase 是一个 **BaaS（Backend as a Service）**——它把整个后端都给你包了。
@@ -2344,7 +2346,7 @@ Next.js 15 (App Router)
 
 ---
 
-## Section 5：常用 Skills + MCP tools（20 min）
+## Section 5：常用 Skills + MCP tools（15 min）
 
 前面几节我们讲的是工程化、代码质量和全栈架构。这一节我想补一块很多人容易搞混的东西：**Skills** 和 **MCP**。
 
@@ -2583,22 +2585,9 @@ styled-components:
 
 ---
 
-## 📋 知识点速查表
+## 🎯 Closing（20 min）
 
-| 概念 | 定义 | 关键点 |
-|------|------|--------|
-| **Biome** | 统一的 lint + format 工具 | 比 ESLint + Prettier 快 100 倍 |
-| **Server Actions** | Next.js 的服务端函数调用 | 前端直接写后端逻辑 |
-| **tRPC** | 端到端类型安全的 RPC 框架 | 前后端类型自动同步 |
-| **Prisma** | TypeScript 友好的 ORM | Schema 即文档，AI 友好 |
-| **Supabase** | 开源的 Firebase 替代品 | PostgreSQL + Auth + Realtime + Vector |
-| **评估矩阵** | 技术选型的量化方法 | 多维度加权评分 |
-| **AI Code Review** | AI 自动审查 PR 代码 | CodeRabbit 等工具 |
-| **渐进式迁移** | 新代码用新技术，旧代码遇修改时迁移 | 降低迁移风险 |
-
-## 🎯 Closing（15 min）
-
-### 今天的核心要点
+### 总结
 
 ```mermaid
 graph TB
@@ -2619,14 +2608,29 @@ graph TB
 6. **全栈化对 AI 友好**：一个代码库，完整数据流
 7. **Supabase 是 AI 友好的 BaaS**：自动 API + 内置 Vector + MCP Server
 
-### 🎯 行动建议
+### 关键收获
 
-- [ ] 为现有项目补充缺失的配置文件（.editorconfig、.npmrc、CHANGELOG.md）
-- [ ] 把项目的 ESLint + Prettier 迁移到 Biome
-- [ ] 开启 TypeScript 严格模式
-- [ ] 尝试用 Server Actions 或 Supabase 做一个全栈功能
-- [ ] 用评估矩阵方法做一次技术选型
-- [ ] 设置 Git Hooks 强制提交规范
+如果今天的课程你只记住三件事，我希望是这三件：
+
+1. **工具链越统一，AI 越听话**：Biome 一个配置文件搞定 lint + format，对 AI 最友好。
+2. **全栈化不是要你做后端专家**：Server Actions + Prisma + Supabase 帮你把"数据流"压缩到一个代码库。
+3. **技术选型靠评估矩阵**：不靠"听说某某好用"，靠维度打分 + 实际 POC。
+
+### 课后实践建议
+
+**练习 1（入门级）：完善项目配置**
+- 为现有项目补全 `.editorconfig`、`.npmrc`、`CHANGELOG.md`、`.gitattributes`
+- 验证 AI 生成的代码是否会遵守这些约定
+
+**练习 2（进阶级）：ESLint + Prettier 迁移到 Biome**
+- 用 `biome migrate` 自动迁移配置
+- 用 `biome ci` 替换原有的 lint + format 脚本
+- 统计迁移前后的执行耗时
+
+**练习 3（高级）：Server Actions + Prisma 全栈功能**
+- 选一个小需求（如评论、点赞）
+- 用 Server Actions + Zod + Prisma 打通前后端
+- 思考对比 REST API / tRPC / Server Actions 的差异
 
 ---
 
@@ -2641,9 +2645,51 @@ graph TB
 
 ---
 
-### 💬 Q&A
+## 📋 知识点速查表
 
-现在我们有 15 分钟的 Q&A 时间。
+| 概念 | 定义 | 关键点 |
+|------|------|--------|
+| **Biome** | 统一的 lint + format 工具 | 比 ESLint + Prettier 快 100 倍 |
+| **Server Actions** | Next.js 的服务端函数调用 | 前端直接写后端逻辑 |
+| **tRPC** | 端到端类型安全的 RPC 框架 | 前后端类型自动同步 |
+| **Prisma** | TypeScript 友好的 ORM | Schema 即文档，AI 友好 |
+| **Supabase** | 开源的 Firebase 替代品 | PostgreSQL + Auth + Realtime + Vector |
+| **评估矩阵** | 技术选型的量化方法 | 多维度加权评分 |
+| **AI Code Review** | AI 自动审查 PR 代码 | CodeRabbit 等工具 |
+| **渐进式迁移** | 新代码用新技术，旧代码遇修改时迁移 | 降低迁移风险 |
+
+---
+
+## 🎯 行动建议
+
+- [ ] 为现有项目补充缺失的配置文件（.editorconfig、.npmrc、CHANGELOG.md）
+- [ ] 把项目的 ESLint + Prettier 迁移到 Biome
+- [ ] 开启 TypeScript 严格模式
+- [ ] 尝试用 Server Actions 或 Supabase 做一个全栈功能
+- [ ] 用评估矩阵方法做一次技术选型
+- [ ] 设置 Git Hooks 强制提交规范
+
+---
+
+## 💬 Q&A
+
+现在进入 Q&A 环节。大家有什么问题都可以提出来。
+
+**Q1：Biome 目前的生态还不够全，一些 ESLint 插件（如 eslint-plugin-jsx-a11y）Biome 不支持怎么办？**
+
+A：可以混用。主要的 lint 和 format 交给 Biome，残留的少数插件继续跑 ESLint。大部分团队的实际方案是"Biome 主攻 + ESLint 处理专项（a11y、import order 等）"。这样既享受 Biome 的速度，也保留必要的覆盖。
+
+**Q2：Server Actions 在生产环境上真的稳吗？要不要退回 REST API？**
+
+A：Next.js 15 的 Server Actions 已经稳定（从 14.1 开始 stable，当前 15.x 是生产就绪状态）。但要注意两点：1）边界清晰，敏感操作要显式做权限检查；2）错误处理要规范，统一返回 `{ success, data?, error? }`。只要你按照这些规范写，比手写一堆 REST API 更可靠、也更类型安全。
+
+**Q3：Supabase 放到企业环境能用吗？数据合规怎么办？**
+
+A：三条路：1）用 Supabase Cloud 的企业版（支持自定义区域、SOC 2 等合规认证）；2）自建 Supabase（它是开源的，可以部署在私有云）；3）只用 Supabase 的开源组件（PostgREST、GoTrue 等）。具体选择看你们的合规要求。
+
+**Q4：评估矩阵打分很主观，怎么保证客观性？**
+
+A：两个办法：1）多人独立打分，再取平均，降低个人偏好影响；2）每个维度都要有"客观证据"来源，比如性能看 benchmark、维护看 GitHub 活跃度、生态看 npm 下载量。最重要的是做 POC，用真实数据验证关键维度。
 
 ---
 
@@ -2651,11 +2697,11 @@ graph TB
 | 部分 | 时长 |
 |------|------|
 | Opening: AI 时代的工程化 | 10 min |
-| Section 1: AI 驱动的 CI/CD | 20 min |
-| Section 2: 项目配置与规范化 | 25 min |
-| Section 3: 代码质量工具（Biome） | 30 min |
-| Section 4: 前端全栈化趋势 | 40 min |
-| Section 5: 常用 Skills + MCP tools | 20 min |
+| Section 1: AI 驱动的 CI/CD | 15 min |
+| Section 2: 项目配置与规范化 | 20 min |
+| Section 3: 代码质量工具（Biome） | 25 min |
+| Section 4: 前端全栈化趋势 | 35 min |
+| Section 5: 常用 Skills + MCP tools | 15 min |
 | Section 6: 技术选型决策框架 | 20 min |
-| Closing + Q&A | 15 min |
+| Closing + Q&A | 20 min |
 | **总计** | **2.5 小时** |
